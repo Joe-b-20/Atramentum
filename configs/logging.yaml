@@ -1,9 +1,16 @@
+# configs/logging.yaml
+# Logging configuration - track the descent
+
 version: 1
 disable_existing_loggers: false
 
 formatters:
   default:
     format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+  
+  detailed:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(filename)s:%(lineno)d - %(message)s'
     datefmt: '%Y-%m-%d %H:%M:%S'
 
 handlers:
@@ -16,7 +23,7 @@ handlers:
   file:
     class: logging.FileHandler
     level: DEBUG
-    formatter: default
+    formatter: detailed
     filename: logs/atramentum.log
     mode: a
 
@@ -24,6 +31,16 @@ loggers:
   atramentum:
     level: DEBUG
     handlers: [console, file]
+    propagate: false
+  
+  transformers:
+    level: WARNING
+    handlers: [console]
+    propagate: false
+  
+  datasets:
+    level: WARNING
+    handlers: [console]
     propagate: false
 
 root:

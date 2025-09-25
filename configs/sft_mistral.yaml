@@ -1,0 +1,53 @@
+# configs/sft_mistral.yaml
+# Mistral configuration - French existentialism meets American nihilism
+
+model:
+  name: teknium/OpenHermes-2.5-Mistral-7B
+  trust_remote_code: true
+
+dataset:
+  path: data/processed/atra_sft.jsonl
+  test_split: 0.05
+  seed: 42
+
+output_dir: checkpoints/atramentum-mistral-sft
+
+training:
+  num_epochs: 3
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 4
+  gradient_accumulation_steps: 32
+  learning_rate: 1.5e-4
+  warmup_ratio: 0.03
+  lr_scheduler_type: cosine
+  max_seq_length: 4096
+  gradient_checkpointing: true
+  fp16: true
+  save_strategy: epoch
+  save_total_limit: 2
+  load_best_model_at_end: true
+  metric_for_best_model: loss
+  greater_is_better: false
+
+lora:
+  r: 128
+  alpha: 16
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - v_proj
+    - k_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  
+quantization:
+  load_in_4bit: true
+  bnb_4bit_compute_dtype: float16
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+
+recency:
+  enabled: true
+  lambda: 0.6

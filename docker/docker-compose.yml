@@ -1,14 +1,27 @@
+# docker/docker-compose.yml
 version: '3.8'
 
 services:
   app:
+    image: atramentum:latest
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    ports:
-      - "8000:8000"
+    runtime: nvidia
     environment:
-      - PORT=8000
+      - NVIDIA_VISIBLE_DEVICES=all
+      - BASIC_AUTH_USER=${BASIC_AUTH_USER}
+      - BASIC_AUTH_PASS=${BASIC_AUTH_PASS}
+      - CORS_LOCALHOST_ONLY=${CORS_LOCALHOST_ONLY:-1}
+      - PORT=${PORT:-8000}
+      - HF_TOKEN=${HF_TOKEN}
+      - WANDB_API_KEY=${WANDB_API_KEY}
     volumes:
+      - ..:/app
+      - ~/.cache/huggingface:/app/.cache/huggingface
       - ../data:/app/data
       - ../checkpoints:/app/checkpoints
+      - ../index:/app/index
+    ports:
+      - "${PORT:-8000}:8000"
+    restart: unless-stopped

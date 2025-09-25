@@ -1,0 +1,47 @@
+# .github/ISSUE_TEMPLATE/bug_report.yml
+name: Bug Report
+description: Something's broken, like my spirit
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. We'll fix it after we fix ourselves.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the bug
+      placeholder: The model achieved sentience and started giving life advice
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should have happened?
+      description: Your expectations (prepare for disappointment)
+      placeholder: It should have remained properly nihilistic
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: How do we summon this demon?
+      value: |
+        1. Run this command
+        2. Wait for existential dread
+        3. Observe error
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      options:
+        - 0.1.2 (latest)
+        - 0.1.1
+        - 0.1.0
+    validations:
+      required: true

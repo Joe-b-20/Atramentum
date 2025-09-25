@@ -1,0 +1,48 @@
+# configs/dpo_llama3.yaml
+# DPO configuration - preference learning for proper pessimism
+
+model:
+  name: checkpoints/atramentum-llama3-sft  # Start from SFT
+  trust_remote_code: true
+
+dataset:
+  path: data/processed/atra_prefs.jsonl
+  test_split: 0.1
+  seed: 42
+
+output_dir: checkpoints/atramentum-llama3-dpo
+
+training:
+  num_epochs: 2
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 16
+  learning_rate: 1e-5
+  warmup_ratio: 0.1
+  lr_scheduler_type: linear
+  max_seq_length: 4096
+  gradient_checkpointing: true
+  fp16: true
+  save_strategy: epoch
+  
+# DPO specific
+dpo:
+  beta: 0.2  # Temperature for preference modeling
+  loss_type: sigmoid
+  label_smoothing: 0.0
+  
+lora:
+  r: 64  # Smaller for DPO
+  alpha: 16
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - v_proj
+    - k_proj
+    - o_proj
+  
+quantization:
+  load_in_4bit: true
+  bnb_4bit_compute_dtype: float16
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true

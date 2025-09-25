@@ -1,0 +1,16 @@
+# .gitattributes
+* text=auto eol=lf
+*.py text
+*.md text
+*.yaml text
+*.yml text
+*.txt text
+*.jsonl text
+
+*.png binary
+*.jpg binary
+*.pdf binary
+*.pkl binary
+*.pt binary
+*.bin binary
+*.faiss binary
