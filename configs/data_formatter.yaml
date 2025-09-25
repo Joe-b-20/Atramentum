@@ -1,0 +1,23 @@
+# Data formatting configuration
+input_paths:
+  - data/Journal.txt
+
+output_dir: data/processed
+
+# Strict date regex - matches full line only
+date_regex: '^(?:\s*)(?:0?[1-9]|1[0-2])\/(?:0?[1-9]|[12]\d|3[01])\/(?:\d{4}|\d{2})(?:\s*)$'
+
+# Processing parameters
+min_chars: 50
+max_chars: 4000
+chunk_size: 900
+chunk_overlap: 120
+
+# Dataset composition
+seeds_ratio: 0.3
+date_strict: true
+
+# Quality filters
+remove_duplicates: true
+normalize_whitespace: true
+strip_quotes: true

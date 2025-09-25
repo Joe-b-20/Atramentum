@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "atramentum"
+version = "0.1.2"
+description = "Self-hosted journal model with archive memory"
+readme = "README.md"
+authors = [
+    {name = "JB", email = "joebachir20@gmail.com"}
+]
+license = {text = "MIT"}
+requires-python = ">=3.10"
+
+[project.urls]
+Homepage = "https://github.com/JB/atramentum"
+Issues = "https://github.com/JB/atramentum/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
