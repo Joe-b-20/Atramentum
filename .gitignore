@@ -58,3 +58,6 @@ logs/
 
 # Wandb
 wandb/
+venv/
+*.deb
+
