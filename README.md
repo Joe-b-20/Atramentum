@@ -22,9 +22,6 @@ flowchart TD
     G --> J["LLM Generation"]
     E --> J
     J -- "Date-First Entry" --> K["Output"]
-
-    style A fill:#FFE0B2
-    style K fill:#BBDEFB
 ```
 
 
