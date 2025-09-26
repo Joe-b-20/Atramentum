@@ -1,5 +1,5 @@
 # Data - your secrets die with you
-data/
+/data/
 !data/.gitkeep
 
 # Model outputs - heavy and personal
