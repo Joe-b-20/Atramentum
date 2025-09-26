@@ -1,8 +1,6 @@
 # Data - your secrets die with you
 data/
 !data/.gitkeep
-!data/formatter.py
-!data/validator.py
 
 # Model outputs - heavy and personal
 checkpoints/
